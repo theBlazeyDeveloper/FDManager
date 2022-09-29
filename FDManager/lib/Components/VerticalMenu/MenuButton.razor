@@ -1,0 +1,38 @@
+﻿@if (IsVisible && Parent is not null && !string.IsNullOrEmpty(ButtonId))
+{
+    <a @onclick="@(() => Parent.ActivatePage(ButtonId))"
+        class="nav-link @CssClass show"   
+        id="v-pills-@ButtonId-tab"
+        data-toggle="pill"
+        href="#v-pills-@ButtonId"
+        role="tab"
+        aria-controls="v-pills-@ButtonId"
+        aria-selected="true">@ButtonText</a>
+}
+
+@code {
+    [CascadingParameter] VerticalMenuControl? Parent { get; set; }
+    [Parameter] public string ButtonText { get; set; } = string.Empty;
+    [Parameter] public string ButtonId { get; set; } = string.Empty;
+    [Parameter] public bool IsVisible { get; set; } = true;
+
+    protected string? CssClass { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Parent is not null)
+            await Parent.AddButton(this);
+    }
+    protected bool IsActive { get; set; }
+
+    public void Activate()
+    {
+        IsActive = true;
+        CssClass = "active";
+    }
+    public void DeActivate()
+    {
+        IsActive = false;
+        CssClass = "";
+    }
+}

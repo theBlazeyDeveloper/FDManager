@@ -1,0 +1,41 @@
+﻿
+<RadzenChart>
+
+    @foreach (var item in Data)
+    {
+        <RadzenLineSeries Smooth="@smooth"
+                      Data="@item.DataItems"
+                      CategoryProperty="@nameof(LineChartDataItem.Month)"
+                      ValueProperty="@nameof(LineChartDataItem.Count)"
+                      Title="@item.Title"
+                      LineType="@LineType">
+            <RadzenMarkers MarkerType="@MarkerType" />
+        </RadzenLineSeries>
+    }
+    <RadzenLegend Position="LegendPosition.Right" />
+    <RadzenCategoryAxis>
+        <RadzenAxisTitle Text="@XAxisLabel" />
+    </RadzenCategoryAxis>
+
+    <RadzenValueAxis>
+        <RadzenGridLines Visible="true" />
+        <RadzenAxisTitle Text="@YAxisLabel" />
+    </RadzenValueAxis>
+
+</RadzenChart>
+
+@code {
+    bool smooth = true;
+
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? YAxisLabel { get; set; }
+
+    [Parameter] public string? XAxisLabel { get; set; }
+
+    [Parameter] public IEnumerable<LineChartData> Data { get; set; } = Enumerable.Empty<LineChartData>();
+
+    [Parameter] public LineType LineType { get; set; } = LineType.Solid;
+
+    [Parameter] public MarkerType MarkerType { get; set; } = MarkerType.Circle;
+}

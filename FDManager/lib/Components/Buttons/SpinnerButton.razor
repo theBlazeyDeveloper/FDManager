@@ -1,0 +1,26 @@
+﻿@code {
+
+    [Parameter] public Func<string>? ButtonTextDelegate { get; set; }
+
+    [Parameter] public string CssClass { get; set; } = string.Empty;
+
+    [Parameter] public bool IsVisible { get; set; } = false;
+
+    [Parameter] public bool Disabled { get; set; }
+
+    [Parameter] public EventCallback OnClick { get; set; }
+
+    void HandleClick()
+    {
+        if (OnClick.HasDelegate)
+            OnClick.InvokeAsync(new EventArgs());
+    }
+}
+
+<button @onclick="HandleClick" class="btn @CssClass" disabled="@Disabled">
+    @if (IsVisible)
+    {
+        <span class="text-white spinner-border spinner-border-sm m-auto"></span>
+    }
+    @ButtonTextDelegate?.Invoke()
+</button>

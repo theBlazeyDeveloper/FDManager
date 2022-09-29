@@ -1,7 +1,7 @@
 ﻿@typeparam T
 
 @code {
-    [Parameter] public T Item { get; set; }
+    [Parameter] public T Item { get; set; } = default!;
 
     [Parameter] public string ColumnTitle { get; set; } = string.Empty;
 }

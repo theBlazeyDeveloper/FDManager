@@ -1,0 +1,35 @@
+﻿<RadzenChart>
+    @foreach (var item in Data)
+    {
+        <RadzenColumnSeries Data="@item.Data"
+                        CategoryProperty="@nameof(BarDataItem.Title)"
+                        ValueProperty="@nameof(BarDataItem.Count)"
+                        Fills="item.Colors"
+                        Title="@item.Title"
+                        LineType="@LineType">
+                   
+                    </RadzenColumnSeries>
+    }
+    <RadzenLegend Position="LegendPosition.Right" />
+    <RadzenCategoryAxis>
+        <RadzenAxisTitle Text="@XAxisLabel" />
+    </RadzenCategoryAxis>
+
+    <RadzenValueAxis>
+        <RadzenGridLines Visible="true" />
+        <RadzenAxisTitle Text="@YAxisLabel" />
+    </RadzenValueAxis>
+
+</RadzenChart>
+
+@code {
+    [Parameter] public IEnumerable<BarData> Data { get; set; } = Enumerable.Empty<BarData>();
+
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string? YAxisLabel { get; set; }
+
+    [Parameter] public string? XAxisLabel { get; set; }
+
+    [Parameter] public LineType LineType { get; set; } = LineType.Solid;
+}

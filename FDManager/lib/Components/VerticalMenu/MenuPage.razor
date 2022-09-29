@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+
+@if (IsActive)
+{
+    <div @key="ButtonId" class="tab-pane active show" id="v-pills-@ButtonId" role="tabpanel" aria-labelledby="v-pills-@ButtonId-tab">
+        @ChildContent
+    </div>
+}
+
+@code {
+    string buttonId = string.Empty;
+    bool isActive;
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string ButtonId
+    {
+        get => buttonId;
+        set
+        {
+            buttonId = value;
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    [Parameter] public EventCallback<MenuPage> OnSelected { get; set; }
+    [CascadingParameter] VerticalMenuControl Parent { get; set; } = default!;
+    [Inject] VerticalMenuStateProvider StateProvider { get; set; } = default!;    
+
+    public bool IsActive
+    {
+        get => isActive;
+        protected set
+        {
+            isActive = value;
+
+            OnSelected.InvokeAsync(this);
+
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Parent is not null)
+            await Parent.AddPage(this);
+    }
+
+    internal void Activate()
+    {
+        IsActive = true;
+
+        if (Parent.AuthState is not null)
+            StateProvider.SelectPage(Parent.AuthState.User, this);
+
+        if (OnSelected.HasDelegate)
+            OnSelected.InvokeAsync(this);
+    }
+    internal void DeActivate()
+    {
+        IsActive = false;
+
+        if (OnSelected.HasDelegate)
+            OnSelected.InvokeAsync(this);
+    }
+}
