@@ -1,0 +1,26 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/FDManager/.vs
+/FDManager/lib/ApplicationServices/bin/Debug/net6.0
+/FDManager/lib/ApplicationServices/obj
+/FDManager/lib/BingMaps/bin/Debug/net6.0
+/FDManager/lib/BingMaps/obj
+/FDManager/lib/Components/obj
+/.vs
+/FDManager/lib/Components/bin/Debug/net6.0
+/FDManager/lib/Data/bin/Debug/net6.0
+/FDManager/lib/Data/obj
+/FDManager/lib/Infrastructure/bin/Debug/net6.0
+/FDManager/lib/Infrastructure/obj/Debug/net6.0
+/FDManager/lib/Infrastructure/obj
+/FDManager/lib/Shared/obj
+/FDManager/src/Api/WebApi/bin/Debug/net6.0
+/FDManager/src/Api/WebApi/obj
+/FDManager/src/Client/WebClient/bin/Debug/net6.0
+/FDManager/src/Client/WebClient/obj
+/FDManager/tests/UnitTests/bin/Debug/net6.0
+/FDManager/tests/UnitTests/obj/Debug/net6.0/ref/UnitTests.dll
+/FDManager/tests/UnitTests/obj
+/FDManager/src/Api/WebApi/Properties
