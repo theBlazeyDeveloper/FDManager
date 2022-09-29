@@ -1,0 +1,63 @@
+﻿@page "/stations"
+
+<PageTitle>Fire Stations</PageTitle>
+
+@if (_stations.Count() > 0)
+{
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center border">District</th>
+                    <th class="text-center border">Number</th>
+                    <th class="text-center border">Address</th>
+                    <th class="text-center border">Council Disctrict</th>
+                    <th class="text-center border">Status</th>
+                    <th class="text-center border">Apparatus</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in _stations)
+                {
+                    <tr>
+                        <td class="text-center border">@item.District</td>
+                        <td class="text-center border">@item.Number</td>
+                        <td class="text-center border">@item.Address</td>
+                        <td class="text-center border">@item.CouncilDistrict</td>
+                        <td class="text-center border">@item.Status</td>                    
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    [Inject] HttpClient? _http { get; set; }
+
+    string _message = string.Empty;
+
+    IEnumerable<FireStationDTO> _stations = Enumerable.Empty<FireStationDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await base.OnInitializedAsync();
+
+            if (_http != null)
+            {
+                var response = await _http.GetFromJsonAsync<FireStationDTO[]>("/api/firestations/get");
+
+                if (response != null)                
+                    _stations = response.AsEnumerable();                
+            }
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+        }
+    }
+}

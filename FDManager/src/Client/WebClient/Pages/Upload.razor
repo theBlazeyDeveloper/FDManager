@@ -1,0 +1,105 @@
+﻿@page "/upload"
+
+<PageTitle>Upload</PageTitle>
+
+<div>
+    <InputFile OnChange="((args) => { _uploadFile = args.File;  })" class="form-control"></InputFile>
+    <button type="button" class="btn btn-outline-primary" @onclick="HandleImport">Import</button>
+</div>
+
+@if(_stations.Count() > 0)
+{
+    <button @onclick="HandleSubmit" class="btn btn-outline-danger">Upload To DB</button>
+}
+
+Results: @_message
+
+@if(_stations.Count() == 0)
+{
+    <div>No Stations</div>
+}
+else
+{
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center border">District</th>
+                    <th class="text-center border">Number</th>
+                    <th class="text-center border">Address</th>
+                    <th class="text-center border">Council Disctrict</th>
+                    <th class="text-center border">Status</th>
+                    <th class="text-center border">Apparatus</th>
+                </tr>                
+            </thead>
+            <tbody>
+                
+                @foreach(var item in _stations)
+                {
+                    <tr>
+                        <td class="text-center border">@item.District</td>
+                        <td class="text-center border">@item.Number</td>
+                        <td class="text-center border">@item.Address</td>
+                        <td class="text-center border">@item.CouncilDistrict</td>
+                        <td class="text-center border">@item.Status</td>
+                        <td class="text-center border">@string.Join(", ", item.Apparatus)</td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
+}
+
+
+
+@code {
+
+    [Inject] ICsvReader? _csvReader { get; set; }
+
+    [Inject] HttpClient? _http { get; set; }
+
+    IBrowserFile? _uploadFile { get; set; }
+
+    string _message = string.Empty;
+
+    IEnumerable<FireStationDTO> _stations = Enumerable.Empty<FireStationDTO>();
+
+    IList<FireStation> _stationData = new List<FireStation>();
+
+    async Task HandleImport()
+    {
+        if (_uploadFile is not null && _csvReader is not null)
+        {
+            using var stream = _uploadFile.OpenReadStream();
+
+            _stations = await _csvReader.ReadAsync<FireStationDTO>(stream);
+
+            foreach (var station in _stations)
+                _stationData.Add(station);
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        try
+        {
+            if (_http != null)
+            {
+                var response = await _http.PostAsJsonAsync<FireStation[]>("/api/firestations/post", _stationData.ToArray());
+
+                if (response != null)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        _message = await response.Content.ReadAsStringAsync();
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+﻿@typeparam T 
+
+
+
+@code {
+    [Parameter] public IEnumerable<T> Data { get; set; } = Enumerable.Empty<T>();
+
+    [Parameter] public RenderFragment<T>? Columns { get; set; }
+}

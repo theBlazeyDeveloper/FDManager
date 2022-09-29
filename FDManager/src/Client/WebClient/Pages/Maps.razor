@@ -1,0 +1,16 @@
+﻿@page "/maps"
+
+@code {
+    [Inject] MapJsInterop? _interop { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender && _interop != null)
+            await _interop.LoadMap();
+    }
+}
+
+
+<div id="myMap" style="position:relative;width:1000px;height:900px;"></div>
