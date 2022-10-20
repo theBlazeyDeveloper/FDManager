@@ -1,6 +1,6 @@
 ﻿namespace Components.Charts
 {
-    public class BarData
+    public sealed class BarData
     {
         readonly IList<BarDataItem> _dataItems = new List<BarDataItem>();
 

@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Services
 {
-    internal class MongoDbRepository<T> : IRepository<T> where T : DataModelBase<T>
+    internal sealed class MongoDbRepository<T> : IRepository<T> where T : DataModelBase<T>
     {
         MongoClient _client;
         IMongoDatabase _database;

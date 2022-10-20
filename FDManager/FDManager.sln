@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "src\Client\Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "src\Api\WebApi\WebApi.csproj", "{84B11216-4AA5-4F79-AD33-DEE85B7895EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationServices", "lib\ApplicationServices\ApplicationServices.csproj", "{D665D013-E34A-4C2E-B96D-5E50F5F11089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "lib\ApplicationServices\Presentation.csproj", "{D665D013-E34A-4C2E-B96D-5E50F5F11089}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "lib\Data\Data.csproj", "{97B8775C-AE5A-46B7-BE49-34E8CC9534CC}"
 EndProject

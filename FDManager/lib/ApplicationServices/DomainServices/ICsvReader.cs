@@ -1,6 +1,6 @@
 ﻿using Shared.Abstract;
 
-namespace ApplicationServices.DomainServices
+namespace Presentation.DomainServices
 {
     public interface ICsvReader
     {

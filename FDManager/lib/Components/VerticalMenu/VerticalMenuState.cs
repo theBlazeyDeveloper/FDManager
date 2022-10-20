@@ -2,7 +2,7 @@
 
 namespace Components.VerticalMenu
 {
-    public struct VerticalMenuState
+    public readonly struct VerticalMenuState
     {
         public VerticalMenuState(ClaimsPrincipal user, MenuPage currentPage)
         {

@@ -1,6 +1,6 @@
 ﻿namespace Shared.Options
 {
-    public class MongoDbOptions
+    public sealed class MongoDbOptions
     {
         public string ConnectionString { get; set; } = string.Empty;
 

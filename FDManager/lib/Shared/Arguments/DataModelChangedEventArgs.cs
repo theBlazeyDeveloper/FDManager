@@ -1,6 +1,6 @@
 ﻿namespace Shared.Arguments
 {
-    public class DataModelChangedEventArgs<T> : EventArgs
+    public sealed class DataModelChangedEventArgs<T> : EventArgs
     {
         public DataModelChangedEventArgs(T model)
         {

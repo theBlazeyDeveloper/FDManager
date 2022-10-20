@@ -1,6 +1,6 @@
 ﻿namespace Components.VerticalMenu
 {
-    public class VerticalStateChangedEventArgs : EventArgs
+    public sealed class VerticalStateChangedEventArgs : EventArgs
     {
         public VerticalStateChangedEventArgs(VerticalMenuState currentState)
         {

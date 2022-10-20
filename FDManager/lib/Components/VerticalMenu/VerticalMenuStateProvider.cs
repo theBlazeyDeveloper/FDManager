@@ -5,7 +5,7 @@ namespace Components.VerticalMenu
 {
     public delegate void OnStateChanged(object sender, VerticalStateChangedEventArgs args);
 
-    public class VerticalMenuStateProvider
+    public sealed class VerticalMenuStateProvider
     {
         static readonly ConcurrentDictionary<string, VerticalMenuState> _states = new();        
 

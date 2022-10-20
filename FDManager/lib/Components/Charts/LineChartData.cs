@@ -1,6 +1,6 @@
 ﻿namespace Components.Charts
 {
-    public class LineChartData
+    public sealed class LineChartData
     {
         readonly IList<LineChartDataItem> _dataItems = new List<LineChartDataItem>();
 

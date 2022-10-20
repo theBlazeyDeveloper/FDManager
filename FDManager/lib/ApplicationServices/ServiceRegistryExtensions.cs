@@ -1,7 +1,7 @@
-﻿using ApplicationServices.DomainServices;
+﻿using Presentation.DomainServices;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ApplicationServices
+namespace Presentation
 {
     public static class ServiceRegistryExtensions
     {

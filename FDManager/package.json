@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/bingmaps": "^0.0.1",
+    "bingmaps": "^2.0.3"
+  }
+}

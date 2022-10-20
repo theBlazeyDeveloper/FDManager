@@ -1,9 +1,9 @@
 ﻿using Shared.Abstract;
 using System.Text;
 
-namespace ApplicationServices.DomainServices
+namespace Presentation.DomainServices
 {
-    internal class CsvReader : ICsvReader
+    internal sealed class CsvReader : ICsvReader
     {
         public CsvReader(){ }
 

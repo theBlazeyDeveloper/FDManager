@@ -1,15 +1,8 @@
-﻿
-export function GetMap() {
-    var navigationBarMode = Microsoft.Maps.NavigationBarMode;
+﻿import { BingMap } from "../../../../../lib/BingMaps/wwwroot/js/bing/bingmaps";
 
-    var map = new Microsoft.Maps.Map('#myMap',
-        {
-            center: new Microsoft.Maps.Location(29.9630376, -95.7673257),
-            mapTypeId: Microsoft.Maps.MapTypeId.canvasDark,
-            zoom: 12,
-            navigationBarMode: navigationBarMode.square,
-            showSearchBar: true
-        });
+export function GetMap() {   
+
+    var map = new BingMap('#myMap', 12);
 }
 
 /// Supported Map Types

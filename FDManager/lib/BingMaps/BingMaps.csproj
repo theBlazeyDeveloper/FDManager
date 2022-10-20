@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Responses\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
